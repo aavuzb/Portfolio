@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdurakhmon - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <div class="header_row" >
+        <div class="selectors">
+            <select id="language-selector" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ko">Korean</option>
+                <option value="uz">Uzbek</option>
+            </select>
+            <script>
+                const langSelector = document.getElementById('language-selector');
+                if (langSelector) {
+                    langSelector.value = localStorage.getItem('currentLanguage') || 'en';
+                }
+            </script>
+            <select id="color-selector" onchange="changeBackgroundColor()">
+                <option value="#1A1A1A">Charcoal Black</option>
+                <option value="#0A1D37">Midnight Blue</option>
+                <option value="#2A1B3D">Deep Purple</option>
+                <option value="#0A3C3C">Forest Teal</option>
+                <option value="#2F2F2F">Obsidian Gray</option>
+            </select>
+        </div>
+
+        <div class="menu_container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="menu_items" id="menu-items">
+                <a id="home" class="top_menu" href="index.html">Home</a>
+                <a id="resume" class="top_menu" href="resume.html">Resume</a>
+                <a id="projects" class="top_menu" href="media/projects.html">Projects</a>
+                <a id="hire-me" class="top_menu" href="hire_me.html">Hire Me</a>
+                <a id="contacts" class="top_menu" href="contact_me.html">Contacts</a>
+                <a id="about_me" class="top_menu" href="about_me.html">About Me</a>
+                <a id="admin" class="top_menu" href="admin.html">Admin</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-16 text-center" id="home_section">
+        <img id="my_picture" src="media/profile.jpg" alt="Abdurakhmon's Profile" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-cyan-400 object-cover">
+        <div class="flex flex-col items-center mb-4">
+            <h1 class="text-3xl md:text-4xl font-semibold text-cyan-400" id="i_am">I'm</h1>
+            <span class="text-4xl md:text-5xl font-bold text-cyan-400 mt-2" id="name">Abdurakhmon</span>
+        </div>
+        <p class="text-xl md:text-2xl text-gray-300 mb-6" id="major">Software & AI Developer</p>
+        <div class="flex justify-center space-x-4">
+            <a href="contact_me.html" id="contact_me" class="inline-block bg-cyan-400 text-gray-900 px-6 py-3 rounded-md font-semibold hover:bg-cyan-300 transition">Contact Me</a>
+            <a href="hire_me.html" id="hire_me" class="inline-block bg-cyan-400 text-gray-900 px-6 py-3 rounded-md font-semibold hover:bg-cyan-300 transition">Hire Me</a>
+        </div>
+    </section>
+    <!-- Proverbs Section -->
+    <section class="container mx-auto px-4 py-12 text-center relative">
+        <h2 id="proverbs_heading" class="text-3xl font-bold text-cyan-400 mb-8">Motivational Proverbs</h2>
+        <div id="proverbs-container" class="relative overflow-hidden bg-gray-800 bg-opacity-50 rounded-lg py-6 px-4 shadow-lg flex items-center justify-center">
+            <p id="proverb-text" class="text-xl md:text-2xl text-gray-300 italic max-w-full md:max-w-3xl mx-auto"></p>
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-blue-500 opacity-20 animate-glow"></div>
+        </div>
+    </section>
+    <!-- Languages Section -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 id="languages_heading" class="text-3xl font-bold text-cyan-400 mb-8">Languages</h2>
+        <div id="languages-list" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 id="skills_heading" class="text-3xl font-bold text-cyan-400 mb-8">Skills</h2>
+        <div id="skills-list" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 Abdurakhmon. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hire Me - Abdurakhmon's Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white font-inter min-h-screen">
+    <div class="header_row">
+        <div class="selectors">
+            <select id="language-selector" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ko">Korean</option>
+                <option value="uz">Uzbek</option>
+            </select>
+            <script>
+                const langSelector = document.getElementById('language-selector');
+                if (langSelector) {
+                    langSelector.value = localStorage.getItem('currentLanguage') || 'en';
+                }
+            </script>
+            <select id="color-selector" onchange="changeBackgroundColor()">
+                <option value="#1A1A1A">Charcoal Black</option>
+                <option value="#0A1D37">Midnight Blue</option>
+                <option value="#2A1B3D">Deep Purple</option>
+                <option value="#0A3C3C">Forest Teal</option>
+                <option value="#2F2F2F">Obsidian Gray</option>
+            </select>
+        </div>
+        <div class="menu_container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="menu_items" id="menu-items">
+                <a id="home" class="top_menu" href="index.html">Home</a>
+                <a id="resume" class="top_menu" href="resume.html">Resume</a>
+                <a id="projects" class="top_menu" href="media/projects.html">Projects</a>
+                <a id="hire-me" class="top_menu" href="hire_me.html">Hire Me</a>
+                <a id="contacts" class="top_menu" href="contact_me.html">Contacts</a>
+                <a id="about_me" class="top_menu" href="about_me.html">About Me</a>
+            </nav>
+        </div>
+    </div>
+    <!-- Success and Error Alerts -->
+    <div id="custom-alert" class="custom-alert">Thank you for your message! I’ll get back to you soon.</div>
+    <div id="error-alert" class="error-alert">
+        Failed to send your offer. Please contact me directly at 
+        <a href="mailto:aavuzb@gmail.com">aavuzb@gmail.com</a> or call 
+        <a href="tel:+821072591421">+821072591421</a>.
+        <button id="error-alert-ok" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">OK</button>
+    </div>
+    <!-- Form Section -->
+    <div class="hire_me_container max-w-4xl mx-auto px-6 py-12" id="information_parts">
+        <h1 id="hire-title" class="text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-in-up">Let's Work Together</h1>
+        <p id="hire-subtitle" class="text-lg text-gray-300 text-center mb-12 animate-fade-in-up">I'm thrilled at the prospect of collaborating on innovative projects. Fill out the form below to share your opportunity, and let's create something amazing!</p>
+        <div class="form_container bg-gray-800 rounded-xl shadow-xl p-8 animate-fade-in-up">
+            <h2 id="form-title" class="text-2xl font-semibold mb-6">Send Me an Offer</h2>
+            <div class="form_content space-y-6">
+                <div>
+                    <label for="company_name" id="company_name-label" class="block text-sm font-medium text-gray-300 mb-2">Company Name</label>
+                    <input type="text" id="company_name" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400" placeholder="Enter company name">
+                </div>
+                <div>
+                    <label for="contact_name" id="contact_name-label" class="block text-sm font-medium text-gray-300 mb-2">Contact Person</label>
+                    <input type="text" id="contact_name" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400" placeholder="Enter your name">
+                </div>
+                <div>
+                    <label for="email" id="email-label" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400" placeholder="Enter your email">
+                </div>
+                <div>
+                    <label for="offer_type" id="offer_type-label" class="block text-sm font-medium text-gray-300 mb-2">Offer Type</label>
+                    <select id="offer_type" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white">
+                        <option value="" disabled selected>Select offer type</option>
+                        <option value="full_time">Full-Time Position</option>
+                        <option value="part_time">Part-Time Position</option>
+                        <option value="freelance">Freelance Project</option>
+                        <option value="contract">Contract Work</option>
+                        <option value="collaboration">Collaboration/Partnership</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="message" id="message-label" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                    <textarea id="message" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 text-white placeholder-gray-400 h-32 resize-y" placeholder="Tell me about the opportunity..."></textarea>
+                </div>
+                <button id="submit_offer" onclick="submitOffer()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition duration-300">Submit Offer</button>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 Abdurakhmon. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

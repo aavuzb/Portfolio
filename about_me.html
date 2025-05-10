@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdurakhmon - About Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+     <!-- Header -->
+     <div class="header_row">
+        <div class="selectors">
+            <select id="language-selector" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ko">Korean</option>
+                <option value="uz">Uzbek</option>
+            </select>
+            <script>
+                const langSelector = document.getElementById('language-selector');
+                if (langSelector) {
+                    langSelector.value = localStorage.getItem('currentLanguage') || 'en';
+                }
+            </script>
+            <select id="color-selector" onchange="changeBackgroundColor()">
+                <option value="#1A1A1A">Charcoal Black</option>
+                <option value="#0A1D37">Midnight Blue</option>
+                <option value="#2A1B3D">Deep Purple</option>
+                <option value="#0A3C3C">Forest Teal</option>
+                <option value="#2F2F2F">Obsidian Gray</option>
+            </select>
+        </div>
+
+        <div class="menu_container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="menu_items" id="menu-items">
+                <a id="home" class="top_menu" href="index.html">Home</a>
+                <a id="resume" class="top_menu" href="resume.html">Resume</a>
+                <a id="projects" class="top_menu" href="media/projects.html">Projects</a>
+                <a id="hire-me" class="top_menu" href="hire_me.html">Hire Me</a>
+                <a id="contacts" class="top_menu" href="contact_me.html">Contacts</a>
+                <a id="about_me" class="top_menu" href="about_me.html">About Me</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="container mx-auto px-4 py-16">
+        <h1 id="aboutme" class="text-4xl font-bold text-cyan-400 mb-12 text-center">About Me</h1>
+
+        <!-- Self Introduction -->
+        <div class="mb-12">
+            <h2 id="self_intro_heading" class="text-2xl font-semibold text-cyan-400 mb-4">Self Introduction</h2>
+            <p id="self-intro-text" class="text-gray-300 bg-gray-800 p-6 rounded-xl shadow-lg"></p>
+        </div>
+
+        <!-- Interests -->
+        <div class="mb-12">
+            <h2 id="interests_heading" class="text-2xl font-semibold text-cyan-400 mb-4">Interests</h2>
+            <div id="interests" class="space-y-0"></div>
+        </div>
+
+        <!-- Hobbies -->
+        <div class="mb-12">
+            <h2 id="hobbies_heading" class="text-2xl font-semibold text-cyan-400 mb-4">Hobbies</h2>
+            <div id="hobbies" class="space-y-0"></div>
+        </div>
+
+        <!-- Skills -->
+        <!-- <div class="mb-12">
+            <h2 id="skills_heading" class="text-2xl font-semibold text-cyan-400 mb-4">Skills</h2>
+            <div id="skills" class="space-y-6"></div>
+        </div> -->
+    </section>
+
+    <!-- Footer (Optional) -->
+    <footer class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2025 Abdurakhmon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

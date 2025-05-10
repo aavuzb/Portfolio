@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <header id="admin_header" class="bg-gray-800 py-4 shadow-md">
+        <div  class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="index.html"><img src="media/profile.jpg" alt="Profile Picture" class="w-12 h-12 rounded-full"></a>
+                <h1 id="admin-heading" class="text-2xl font-bold text-cyan-400">Admin Panel</h1>
+            </div>
+            <div class="selectors flex space-x-4">
+                <button onclick="exportDataToJs()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-400">Export Data to JS</button>
+                <select id="language-selector" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="ko">Korean</option>
+                    <option value="uz">Uzbek</option>
+                </select>
+                <script>
+                    const langSelector = document.getElementById('language-selector');
+                    if (langSelector) {
+                        langSelector.value = localStorage.getItem('currentLanguage') || 'en';
+                    }
+                </script>
+                <select id="color-selector" onchange="changeBackgroundColor()" class="bg-gray-700 border border-gray-600 rounded-md px-4 py-2">
+                    <option value="#1A1A1A">Dark</option>
+                    <option value="#2D3748">Gray</option>
+                    <option value="#4A5568">Light Gray</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main id="admin_main_container" class="container mx-auto px-4 py-8">
+        <div class="tabs flex space-x-4 mb-8">
+            <button onclick="showTab('resume-tab')" class="tab-button bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-cyan-400 hover:text-gray-900">Resume</button>
+            <button onclick="showTab('projects-tab')" class="tab-button bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-cyan-400 hover:text-gray-900">Projects</button>
+            <button onclick="showTab('about-tab')" class="tab-button bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-cyan-400 hover:text-gray-900">About Me</button>
+            <button onclick="showTab('languages-tab')" class="tab-button bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-cyan-400 hover:text-gray-900">Languages</button>
+            <button onclick="showTab('skills-tab')" class="tab-button bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-cyan-400 hover:text-gray-900">Skills</button>
+        </div>
+
+        <!-- Resume Tab -->
+        <div id="resume-tab" class="tab-content hidden">
+            <h2 id="manage-resume-heading" class="text-2xl font-semibold text-cyan-400 mb-4">Manage Resume</h2>
+            <!-- Work Experience -->
+            <div class="admin-section bg-gray-800 p-6 rounded-xl mb-8">
+                <h3 id="work-experience-heading" class="text-xl font-semibold text-cyan-400 mb-4">Work Experience</h3>
+                <form id="work-form" class="space-y-4">
+                    <input type="hidden" id="work-id">
+                    <div>
+                        <label id="position-label" class="block text-gray-300">Position (English)</label>
+                        <input type="text" id="work-position-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Position (Korean)</label>
+                        <input type="text" id="work-position-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Position (Uzbek)</label>
+                        <input type="text" id="work-position-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="company-label" class="block text-gray-300">Company (English)</label>
+                        <input type="text" id="work-company-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Company (Korean)</label>
+                        <input type="text" id="work-company-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Company (Uzbek)</label>
+                        <input type="text" id="work-company-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="type-label" class="block text-gray-300">Type</label>
+                        <select id="work-type" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Freelance">Freelance</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label id="start-date-label" class="block text-gray-300">Start Date</label>
+                        <input type="date" id="work-start-date" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label id="end-date-label" class="block text-gray-300">End Date</label>
+                        <input type="date" id="work-end-date" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="projects-label" class="block text-gray-300">Projects</label>
+                        <div id="work-projects" class="space-y-4"></div>
+                        <button type="button" onclick="addWorkProjectField()" class="bg-cyan-400 text-gray-900 px-4 py-2 rounded-md hover:bg-cyan-300">Add Project</button>
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+                </form>
+                <div id="work-experiences-list" class="mt-4 space-y-4"></div>
+            </div>
+            <!-- Education -->
+            <div class="admin-section bg-gray-800 p-6 rounded-xl mb-8">
+                <h3 id="education-heading" class="text-xl font-semibold text-cyan-400 mb-4">Education</h3>
+                <form id="edu-form" class="space-y-4">
+                    <input type="hidden" id="edu-id">
+                    <div>
+                        <label id="institution-label" class="block text-gray-300">Institution (English)</label>
+                        <input type="text" id="edu-institution-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Institution (Korean)</label>
+                        <input type="text" id="edu-institution-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Institution (Uzbek)</label>
+                        <input type="text" id="edu-institution-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="student-type-label" class="block text-gray-300">Student Type (English)</label>
+                        <input type="text" id="edu-student-type-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Student Type (Korean)</label>
+                        <label class="block text-gray-300">Student Type (Korean)</label>
+                        <input type="text" id="edu-student-type-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Student Type (Uzbek)</label>
+                        <input type="text" id="edu-student-type-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="degree-level-label" class="block text-gray-300">Degree Level</label>
+                        <select id="edu-degree-level" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Master">Master</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label id="start-date-label" class="block text-gray-300">Start Date</label>
+                        <input type="date" id="edu-start-date" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label id="end-date-label" class="block text-gray-300">End Date</label>
+                        <input type="date" id="edu-end-date" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="researches-label" class="block text-gray-300">Researches</label>
+                        <div id="edu-researches" class="space-y-4"></div>
+                        <button type="button" onclick="addEduResearchField()" class="bg-cyan-400 text-gray-900 px-4 py-2 rounded-md hover:bg-cyan-300">Add Research</button>
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+                </form>
+                <div id="education-backgrounds-list" class="mt-4 space-y-4"></div>
+            </div>
+            <!-- Publications -->
+            <div class="admin-section bg-gray-800 p-6 rounded-xl mb-8">
+                <h3 id="publications-heading" class="text-xl font-semibold text-cyan-400 mb-4">Publications</h3>
+                <form id="pub-form" class="space-y-4">
+                    <input type="hidden" id="pub-id">
+                    <div>
+                        <label id="title-label" class="block text-gray-300">Title (English)</label>
+                        <input type="text" id="pub-title-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Title (Korean)</label>
+                        <input type="text" id="pub-title-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Title (Uzbek)</label>
+                        <input type="text" id="pub-title-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="publisher-label" class="block text-gray-300">Publisher (English)</label>
+                        <input type="text" id="pub-publisher-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Publisher (Korean)</label>
+                        <input type="text" id="pub-publisher-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Publisher (Uzbek)</label>
+                        <input type="text" id="pub-publisher-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="publication-date-label" class="block text-gray-300">Publication Date</label>
+                        <input type="date" id="pub-date" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label id="url-label" class="block text-gray-300">URL</label>
+                        <input type="url" id="pub-url" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+                </form>
+                <div id="publications-list" class="mt-4 space-y-4"></div>
+            </div>
+            <!-- Certificates -->
+            <div class="admin-section bg-gray-800 p-6 rounded-xl">
+                <h3 id="certificates-heading" class="text-xl font-semibold text-cyan-400 mb-4">Certificates</h3>
+                <form id="cert-form" class="space-y-4">
+                    <input type="hidden" id="cert-id">
+                    <div>
+                        <label id="title-label" class="block text-gray-300">Title (English)</label>
+                        <input type="text" id="cert-title-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Title (Korean)</label>
+                        <input type="text" id="cert-title-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Title (Uzbek)</label>
+                        <input type="text" id="cert-title-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="issuer-label" class="block text-gray-300">Issuer (English)</label>
+                        <input type="text" id="cert-issuer-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Issuer (Korean)</label>
+                        <input type="text" id="cert-issuer-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300">Issuer (Uzbek)</label>
+                        <input type="text" id="cert-issuer-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <div>
+                        <label id="issue-date-label" class="block text-gray-300">Issue Date</label>
+                        <input type="date" id="cert-date" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                    </div>
+                    <div>
+                        <label id="url-label" class="block text-gray-300">URL</label>
+                        <input type="url" id="cert-url" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+                </form>
+                <div id="certificates-list" class="mt-4 space-y-4"></div>
+            </div>
+        </div>
+
+        <!-- Projects Tab -->
+        <div id="projects-tab" class="tab-content hidden">
+            <h2 id="manage-projects-heading" class="text-2xl font-semibold text-cyan-400 mb-4">Manage Projects</h2>
+            <form id="project-form" class="bg-gray-800 p-6 rounded-xl space-y-4">
+                <input type="hidden" id="edit-index">
+                <div>
+                    <label id="project-title-label" class="block text-gray-300">Project Title (English)</label>
+                    <input type="text" id="title-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Project Title (Korean)</label>
+                    <input type="text" id="title-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <div>
+                    <label class="block text-gray-300">Project Title (Uzbek)</label>
+                    <input type="text" id="title-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <div>
+                    <label id="project-description-label" class="block text-gray-300">Project Description (English)</label>
+                    <textarea id="description-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Project Description (Korean)</label>
+                    <textarea id="description-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Project Description (Uzbek)</label>
+                    <textarea id="description-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2"></textarea>
+                </div>
+
+                <div>
+                    <label id="project-media-label" class="block text-gray-300">Project Media (Image/Video File Name)</label>
+                    <div class="flex space-x-2">
+                        <input type="text" id="media" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" placeholder="Select a file to display its name" readonly>
+                        <label for="project-media-file" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-400 cursor-pointer">Choose File</label>
+                        <input type="file" id="project-media-file" class="hidden" accept="image/*,video/mp4,video/webm">
+                    </div>
+                </div>
+                <div>
+                    <label id="alerts-heading" class="block text-gray-300">Alerts</label>
+                    <div id="alerts-container" class="space-y-4"></div>
+                    <button type="button" id="add-alert" class="bg-cyan-400 text-gray-900 px-4 py-2 rounded-md hover:bg-cyan-300">Add Alert</button>
+                </div>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+            </form>
+            <div id="projects-container" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+
+        <!-- About Me Tab -->
+        <div id="about-tab" class="tab-content hidden">
+            <h2 id="manage-about-heading" class="text-2xl font-semibold text-cyan-400 mb-4">Manage About Me</h2>
+            <div class="bg-gray-800 p-6 rounded-xl">
+                <label class="block text-gray-300">About Me Text (English)</label>
+                <textarea id="aboutInput-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2"></textarea>
+                <label class="block text-gray-300 mt-4">About Me Text (Korean)</label>
+                <textarea id="aboutInput-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2"></textarea>
+                <label class="block text-gray-300 mt-4">About Me Text (Uzbek)</label>
+                <textarea id="aboutInput-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2"></textarea>
+                <button onclick="saveAbout()" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400 mt-4">Save</button>
+
+                <div class="mt-4">
+                    <h3 id="interests-heading" class="text-xl font-semibold text-cyan-400">Interests</h3>
+                    <div id="interestsInputs" class="space-y-2"></div>
+                    <button onclick="addInput('interestsInputs')" class="bg-cyan-400 text-gray-900 px-4 py-2 rounded-md hover:bg-cyan-300 mt-2">Add Interest</button>
+                    <button onclick="saveList('interestsInputs', 'interests')" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400 mt-2">Save Interests</button>
+                </div>
+
+                <div class="mt-4">
+                    <h3 id="hobbies-heading" class="text-xl font-semibold text-cyan-400">Hobbies</h3>
+                    <div id="hobbiesInputs" class="space-y-2"></div>
+                    <button onclick="addInput('hobbiesInputs')" class="bg-cyan-400 text-gray-900 px-4 py-2 rounded-md hover:bg-cyan-300 mt-2">Add Hobby</button>
+                    <button onclick="saveList('hobbiesInputs', 'hobbies')" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400 mt-2">Save Hobbies</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages Tab -->
+        <div id="languages-tab" class="tab-content hidden">
+            <h2 id="manage-languages-heading" class="text-2xl font-semibold text-cyan-400 mb-4">Manage Languages</h2>
+            <form id="lang-form" class="bg-gray-800 p-6 rounded-xl space-y-4">
+                <div>
+                    <label class="block text-gray-300">Name (English)</label>
+                    <input type="text" id="lang-name-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Name (Korean)</label>
+                    <input type="text" id="lang-name-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <div>
+                    <label class="block text-gray-300">Name (Uzbek)</label>
+                    <input type="text" id="lang-name-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <div>
+                    <label class="block text-gray-300">Percentage</label>
+                    <input type="number" id="lang-percentage" min="0" max="100" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Color</label>
+                    <input type="color" id="lang-color" value="#4caf50" class="w-full h-10 bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+            </form>
+            <div id="languages-list" class="mt-4 space-y-4"></div>
+        </div>
+
+        <!-- Skills Tab -->
+        <div id="skills-tab" class="tab-content hidden">
+            <h2 id="manage-skills-heading" class="text-2xl font-semibold text-cyan-400 mb-4">Manage Skills</h2>
+            <form id="skill-form" class="bg-gray-800 p-6 rounded-xl space-y-4">
+                <div>
+                    <label class="block text-gray-300">Name (English)</label>
+                    <input type="text" id="skill-name-en" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Name (Korean)</label>
+                    <input type="text" id="skill-name-ko" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <div>
+                    <label class="block text-gray-300">Name (Uzbek)</label>
+                    <input type="text" id="skill-name-uz" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <div>
+                    <label class="block text-gray-300">Percentage</label>
+                    <input type="number" id="skill-percentage" min="0" max="100" class="w-full bg-gray-600 border border-gray-500 rounded-md px-4 py-2" required>
+                </div>
+                <div>
+                    <label class="block text-gray-300">Color</label>
+                    <input type="color" id="skill-color" value="#4caf50" class="w-full h-10 bg-gray-600 border border-gray-500 rounded-md px-4 py-2">
+                </div>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400">Save</button>
+            </form>
+            <div id="skills-list" class="mt-4 space-y-4"></div>
+        </div>
+    </main>
+    
+</body>
+</html>

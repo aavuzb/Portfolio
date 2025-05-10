@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Me - Abdurakhmon's Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-inter min-h-screen">
+    <!-- Header -->
+    <div class="header_row">
+        <div class="selectors">
+            <select id="language-selector" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ko">Korean</option>
+                <option value="uz">Uzbek</option>
+            </select>
+            <script>
+                const langSelector = document.getElementById('language-selector');
+                if (langSelector) {
+                    langSelector.value = localStorage.getItem('currentLanguage') || 'en';
+                }
+            </script>
+            <select id="color-selector" onchange="changeBackgroundColor()">
+                <option value="#1A1A1A">Charcoal Black</option>
+                <option value="#0A1D37">Midnight Blue</option>
+                <option value="#2A1B3D">Deep Purple</option>
+                <option value="#0A3C3C">Forest Teal</option>
+                <option value="#2F2F2F">Obsidian Gray</option>
+            </select>
+        </div>
+        <div class="menu_container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="menu_items" id="menu-items">
+                <a id="home" class="top_menu" href="index.html">Home</a>
+                <a id="resume" class="top_menu" href="resume.html">Resume</a>
+                <a id="projects" class="top_menu" href="media/projects.html">Projects</a>
+                <a id="hire-me" class="top_menu" href="hire_me.html">Hire Me</a>
+                <a id="contacts" class="top_menu" href="contact_me.html">Contacts</a>
+                <a id="about_me" class="top_menu" href="about_me.html">About Me</a>
+            </nav>
+        </div>
+    </div>
+    <!-- Success Alert -->
+    <div id="custom-alert" class="custom-alert">
+        Thank you for your message! I’ll get back to you soon.
+    </div>
+    <!-- Error Alert -->
+    <div id="error-alert" class="error-alert">
+        Failed to send your message. Please contact me directly at 
+        <a href="mailto:aavuzb@gmail.com">aavuzb@gmail.com</a> 
+        or call <a href="tel:+821072591421">+821072591421</a>.
+        <button id="error-alert-ok" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">OK</button>
+    </div>
+    <!-- Contact Form Section -->
+    <div class="contact_container max-w-4xl mx-auto px-6 py-12">
+        <h1 id="contact-title" class="text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-in-up">Get in Touch</h1>
+        <p id="contact-subtitle" class="text-lg text-gray-300 text-center mb-12 animate-fade-in-up">I'm excited to connect with you!</p>
+        <div class="form_container bg-gray-800 rounded-xl shadow-xl p-8 animate-fade-in-up">
+            <h2 id="form-title" class="text-2xl font-semibold mb-6">Send Me a Message</h2>
+            <div class="form_content space-y-6">
+                <div>
+                    <label for="name" id="name-label" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3">
+                </div>
+                <div>
+                    <label for="email" id="email-label" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3">
+                </div>
+                <div>
+                    <label for="subject" id="subject-label" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                    <input type="text" id="subject" placeholder="Enter the subject" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3">
+                </div>
+                <div>
+                    <label for="message" id="message-label" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                    <textarea id="message" placeholder="Your message..." required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-3 h-32 resize-y"></textarea>
+                </div>
+                <button id="submit_contact" onclick="submitContact()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md">
+                    Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 Abdurakhmon. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
