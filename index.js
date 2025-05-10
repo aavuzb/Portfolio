@@ -593,7 +593,7 @@ async function submitOffer() {
     const companyName = document.getElementById('company_name')?.value.trim();
     const contactName = document.getElementById('contact_name')?.value.trim();
     const email = document.getElementById('email')?.value.trim();
-    const offerType = document.getElementById('offer_type')?.value;
+    const offerType = document.getElementById('offer_type')?.value.trim();
     const message = document.getElementById('message')?.value.trim();
     const lang = currentLanguage;
 
@@ -603,7 +603,7 @@ async function submitOffer() {
             contact_name: contactName,
             email: email,
             offer_type: offerType,
-            message: message
+            message: "-----Message-----" + message + "-----Offer Type-----"+ offerType + "-----Email-----"+ email + "-----Contacted Person Name-----" + contactName + "-----Contacted Company Name-----" + companyName
         };
         try {
             await emailjs.send('service_qa70cpf', 'template_1m6hw6m', templateParams);
@@ -631,14 +631,14 @@ async function submitContact() {
     const lang = currentLanguage;
 
     if (name && email && subject && message) {
-        try {
-            const params = {
-                from_name: name,
-                from_email: email,
+        const templateParams = {
+                name: name,
+                email: email,
                 subject: subject,
-                message: message
+                message: "-----Message-----" + message + "-----Subject-----" + subject + "-----Email-----" + email + "-----Name-----" + name
             };
-            await emailjs.send('service_qa70cpf', 'template_1m6hw6m', params);
+        try {
+            await emailjs.send('service_qa70cpf', 'template_1m6hw6m', templateParams);
             showCustomAlert();
             document.getElementById('name').value = '';
             document.getElementById('email').value = '';
