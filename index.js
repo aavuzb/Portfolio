@@ -31,7 +31,7 @@ const translations = {
         skills: 'Skills',
         hire_me: 'Hire Me',
         contacts: 'Contacts',
-        aboutme: 'About Me',
+        about_me: 'About Me',
         admin: 'Admin',
         i_am: "I'm",
         name: 'Abdurakhmon',
@@ -146,7 +146,7 @@ const translations = {
         skills: '기술',
         hire_me: '고용하기',
         contacts: '연락처',
-        aboutme: '소개',
+        about_me: '소개',
         admin: '관리자',
         i_am: '저는',
         name: '압두라크먼',
@@ -259,7 +259,7 @@ const translations = {
         skills: 'Ko‘nikmalar',
         hire_me: 'Ishga taklif',
         contacts: 'Bog‘lanish',
-        aboutme: 'Men haqimda',
+        about_me: 'Men haqimda',
         admin: 'Admin',
         i_am: 'Men',
         name: 'Abduraxmon',
@@ -549,7 +549,7 @@ function changeLanguage() {
 }
 
 function debugNavigation() {
-    const navItems = ['home', 'resume', 'projects', 'skills', 'hire_me', 'contacts', 'aboutme', 'admin'];
+    const navItems = ['home', 'resume', 'projects', 'skills', 'hire_me', 'contacts', 'about_me', 'admin'];
     navItems.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
@@ -661,7 +661,7 @@ function updateContent() {
         const id = el.id.replace(/-/g, '_');
         if (translations[currentLanguage][id]) {
             el.textContent = translations[currentLanguage][id];
-            if (['home', 'resume', 'projects', 'skills', 'hire_me', 'contacts', 'aboutme', 'admin'].includes(id)) {
+            if (['home', 'resume', 'projects', 'skills', 'hire_me', 'contacts', 'about_me', 'admin'].includes(id)) {
                 el.style.display = '';
             }
         }
