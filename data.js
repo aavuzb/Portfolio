@@ -246,7 +246,7 @@ const portfolioData = {
           "ko": "라인트론",
           "uz": "LineTron"
         },
-        "type": "Freelance",
+        "type": "Full-time",
         "startDate": "2025-03-10",
         "endDate": "",
         "projects": [
