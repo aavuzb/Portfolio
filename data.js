@@ -246,7 +246,7 @@ const portfolioData = {
           "ko": "라인트론",
           "uz": "LineTron"
         },
-        "type": "Full-time",
+        "type": "Freelance",
         "startDate": "2025-03-10",
         "endDate": "",
         "projects": [
@@ -838,20 +838,33 @@ const portfolioData = {
         "ko": "청소 장치를 제어하는 안드로이드 애플리케이션",
         "uz": "Tozalovchi qurilmani boshqarish uchun Android ilovasi"
       },
-      "media": "linetron_air_cleaner.gif",
+      "media": "Linetron_smart_cleaner.gif",
       "alerts": [
         {
           "alertTitle": {
-            "en": "Smart-Cleaner Android Application",
-            "ko": "스마트 클리너 안드로이드 애플리케이션",
-            "uz": "Smart-Cleaner Android ilovasi"
+            "en": "Smart-Cleaner Android Application (Cell phone Test)",
+            "ko": "스마트 클리너 안드로이드 애플리케이션 (휴대폰 테스트)",
+            "uz": "Smart-Cleaner Android ilovasi (Uyali telefon testi)"
           },
           "alertDescription": {
             "en": "This Android application is used to communicate with the air cleaner device using a Serial connection, and it is also utilized to control the air cleaner device.\nJava and Android Studio are used to implement this mobile application.",
             "ko": "이 안드로이드 애플리케이션은 시리얼 연결을 통해 공기청정기 장치와 통신하는 데 사용되며, 공기청정기 장치를 제어하는 데에도 사용됩니다.\n이 모바일 애플리케이션은 Java와 Android Studio를 사용하여 구현되었습니다.",
             "uz": "Bu Android ilova havo tozalagich qurilmasi bilan Serial ulanish orqali muloqot qilish uchun ishlatiladi, shuningdek, havo tozalagich qurilmasini boshqarish uchun ham foydalaniladi.\nUshbu mobil ilova Java va Android Studio yordamida ishlab chiqilgan."
           },
-          "alertMedia": "linetron_air_cleaner.mp4"
+          "alertMedia": "Linetron_smart_cleani_cellphone.mp4"
+        },
+        {
+          "alertTitle": {
+            "en": "Smart-Cleaner Android Application (Tablet Test)",
+            "ko": "스마트 클리너 안드로이드 애플리케이션 (태블릿 테스트)",
+            "uz": "Smart-Cleaner Android ilovasi (Planshet sinovi)"
+          },
+          "alertDescription": {
+            "en": "The Smart Cleaner application can handle any errors. It continuously tries to handle any errors. ",
+            "ko": "Smart Cleaner 앱은 어떤 오류든 처리할 수 있습니다. 지속적으로 오류를 처리하려고 노력합니다.",
+            "uz": "Smart Cleaner ilovasi har qanday xatoliklarni bartaraf etishi mumkin. U doimiy ravishda har qanday xatolarni tuzatishga harakat qiladi."
+          },
+          "alertMedia": "Linetron_smart_cleaner_tablet.mp4"
         }
       ]
     },
