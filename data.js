@@ -756,9 +756,9 @@ const portfolioData = {
           uz: "KIIP Level 5 ",
         },
         issuer: {
-          en: "Lorean immigration and integration program",
+          en: "Korean  immigration and integration program",
           ko: "사회통합프로그램 ",
-          uz: "Lorean immigration and integration program",
+          uz: "Korean  immigration and integration program",
         },
         date: "2024-04-26",
         url: "",
