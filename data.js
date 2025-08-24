@@ -1449,6 +1449,21 @@ const portfolioData = {
           "alertMedia": "python_course_preview.mp4"
         }
       ]
+    },
+    {
+      "id": 1756007753991,
+      "title": {
+        "en": "Auto Test",
+        "ko": "자동 테스트",
+        "uz": "Auto Test"
+      },
+      "description": {
+        "en": "This project is used to generate the Validation Report, Test Scenario Report, Test Data, Test Software, and Programming Language Codes from Test Specifications.\nThis tool can generate Reports and Codes in any Language. Please watch the video to understand the working process of the Auto Test Tool\n",
+        "ko": "이 프로젝트는 테스트 사양에서 검증 보고서, 테스트 시나리오 보고서, 테스트 데이터, 테스트 소프트웨어 및 프로그래밍 언어 코드를 생성하는 데 사용됩니다. 이 도구는 모든 언어로 보고서와 코드를 생성할 수 있습니다. 자동 테스트 도구의 작동 과정을 이해하려면 비디오를 시청하십시",
+        "uz": "Ushbu loyiha sinov spetsifikatsiyalaridan tasdiqlash hisoboti, sinov stsenariysi hisoboti, sinov ma'lumotlari, sinov dasturiy ta'minoti va dasturlash tili kodlarini yaratish uchun ishlatiladi. Ushbu vosita har qanday tilda hisobotlar va kodlarni yaratishi mumkin. Avtomatik sinov vositasining ishlash jarayonini tushunish uchun videoni tomosha qiling."
+      },
+      "media": "Linetron_autotest_kor_eng_uzb.mp4",
+      "alerts": []
     }
   ],
   "aboutData": {
