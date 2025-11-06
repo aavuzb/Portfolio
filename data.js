@@ -255,7 +255,7 @@ const portfolioData = {
           "ko": "라인트론",
           "uz": "LineTron"
         },
-        "type": "Freelance",
+        "type": "Full-Time",
         "startDate": "2025-03-10",
         "endDate": "",
         "projects": [
@@ -775,9 +775,9 @@ const portfolioData = {
       {
         "id": 1746330790645,
         "title": {
-          "en": "IELTS",
-          "ko": "아이엘츠",
-          "uz": "IELTS"
+          "en": "IELTS 6",
+          "ko": "아이엘츠 6",
+          "uz": "IELTS 6"
         },
         "issuer": {
           "en": "British Council",
